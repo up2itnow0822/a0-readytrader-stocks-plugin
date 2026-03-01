@@ -1,0 +1,9 @@
+title: ReadyTrader Stocks
+description: Connect your agent to stock markets through the ReadyTrader-Stocks MCP server. Get quotes, fundamental data, technical analysis, and execute paper or live trades via Alpaca.
+version: 1.0.0
+settings_sections:
+  - agent
+  - external
+per_project_config: false
+per_agent_config: true
+always_enabled: false

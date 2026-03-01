@@ -1,0 +1,25 @@
+# ReadyTrader Stocks — Default Configuration
+
+# MCP server connection
+mcp_server_url: "http://localhost:8000"
+
+# Trading mode: paper (simulated) or live
+trading_mode: "paper"
+
+# Default market
+default_market: "US"
+
+# Paper trading starting balance (USD)
+paper_starting_balance: 10000.0
+
+# Risk limits
+max_position_size_usd: 1000.0
+max_portfolio_risk_pct: 5.0
+stop_loss_pct: 2.0
+
+# Default timeframe for chart data
+default_timeframe: "1d"
+
+# Brokerage API keys (set via environment variables)
+brokerage_api_key_env: "ALPACA_API_KEY"
+brokerage_api_secret_env: "ALPACA_API_SECRET"

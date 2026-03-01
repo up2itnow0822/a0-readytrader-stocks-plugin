@@ -1,0 +1,70 @@
+<html>
+<head>
+  <title>ReadyTrader Stocks Settings</title>
+  <script type="module">
+    import { store } from "/components/plugins/plugin-settings-store.js";
+  </script>
+</head>
+<body>
+  <div x-data>
+    <template x-if="$store.pluginSettings">
+      <div>
+        <h3 style="margin-bottom: 12px; color: #e2e8f0;">📈 ReadyTrader Stocks</h3>
+
+        <div style="margin-bottom: 16px;">
+          <label style="display: block; margin-bottom: 4px; color: #94a3b8; font-size: 13px;">MCP Server URL</label>
+          <input type="text"
+                 x-model="$store.pluginSettings.settings.mcp_server_url"
+                 placeholder="http://localhost:8000"
+                 style="width: 100%; padding: 8px 12px; background: #1e293b; border: 1px solid #334155; border-radius: 6px; color: #e2e8f0;" />
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <label style="display: block; margin-bottom: 4px; color: #94a3b8; font-size: 13px;">Trading Mode</label>
+          <select x-model="$store.pluginSettings.settings.trading_mode"
+                  style="width: 100%; padding: 8px 12px; background: #1e293b; border: 1px solid #334155; border-radius: 6px; color: #e2e8f0;">
+            <option value="paper">Paper (Simulated)</option>
+            <option value="live">Live</option>
+          </select>
+        </div>
+
+        <h3 style="margin: 20px 0 12px; color: #e2e8f0;">⚠️ Risk Limits</h3>
+
+        <div style="margin-bottom: 16px;">
+          <label style="display: block; margin-bottom: 4px; color: #94a3b8; font-size: 13px;">Max Position Size (USD)</label>
+          <input type="number"
+                 x-model.number="$store.pluginSettings.settings.max_position_size_usd"
+                 min="0" step="100"
+                 style="width: 100%; padding: 8px 12px; background: #1e293b; border: 1px solid #334155; border-radius: 6px; color: #e2e8f0;" />
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <label style="display: block; margin-bottom: 4px; color: #94a3b8; font-size: 13px;">Max Portfolio Risk (%)</label>
+          <input type="number"
+                 x-model.number="$store.pluginSettings.settings.max_portfolio_risk_pct"
+                 min="0" max="100" step="0.5"
+                 style="width: 100%; padding: 8px 12px; background: #1e293b; border: 1px solid #334155; border-radius: 6px; color: #e2e8f0;" />
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <label style="display: block; margin-bottom: 4px; color: #94a3b8; font-size: 13px;">Stop Loss (%)</label>
+          <input type="number"
+                 x-model.number="$store.pluginSettings.settings.stop_loss_pct"
+                 min="0" max="50" step="0.5"
+                 style="width: 100%; padding: 8px 12px; background: #1e293b; border: 1px solid #334155; border-radius: 6px; color: #e2e8f0;" />
+        </div>
+
+        <h3 style="margin: 20px 0 12px; color: #e2e8f0;">🔑 Brokerage API</h3>
+        <div style="margin-bottom: 16px;">
+          <label style="display: block; margin-bottom: 4px; color: #94a3b8; font-size: 13px;">API Key Env Var</label>
+          <input type="text"
+                 x-model="$store.pluginSettings.settings.brokerage_api_key_env"
+                 placeholder="ALPACA_API_KEY"
+                 style="width: 100%; padding: 8px 12px; background: #1e293b; border: 1px solid #334155; border-radius: 6px; color: #e2e8f0;" />
+          <span style="font-size: 11px; color: #64748b;">Name of the env var holding your brokerage API key.</span>
+        </div>
+      </div>
+    </template>
+  </div>
+</body>
+</html>
