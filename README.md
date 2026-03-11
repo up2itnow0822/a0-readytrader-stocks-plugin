@@ -1,40 +1,43 @@
-> ⚠️ **Early Development** — This A0 plugin is a minimal wrapper. The full trading engine lives in [ReadyTrader-Stocks](https://github.com/up2itnow0822/ReadyTrader-Stocks).
+# a0-readytrader-stocks-plugin
 
----
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Agent Zero Plugin](https://img.shields.io/badge/Agent%20Zero-Plugin-blue)](https://github.com/frdel/agent-zero)
 
-# ReadyTrader Stocks — Agent Zero Plugin
+**Agent Zero plugin** for automated Stocks trading via the ReadyTrader strategy engine.
 
-An Agent Zero plugin that connects your agent to the [ReadyTrader-Stocks](https://github.com/up2itnow0822/ReadyTrader-Stocks) MCP server. Your agent gets stock quotes, fundamental data, sentiment, technical analysis, and backtesting through a running ReadyTrader-Stocks instance.
+## Installation
 
-## What it does
+```bash
+git clone https://github.com/up2itnow0822/a0-readytrader-stocks-plugin.git
+cd a0-readytrader-stocks-plugin
+pip install -r requirements.txt
+```
 
-- **Stock quotes** — live prices for any US-listed ticker
-- **OHLCV data** — historical candle data at any timeframe
-- **Fundamental data** — earnings, financial ratios, key metrics
-- **Sentiment** — news and social sentiment for individual stocks
-- **Backtest** — test trading strategies against historical data
-- **Regime detection** — is the stock trending, ranging, or volatile?
+## Usage
 
-> **Note:** The capabilities above are provided by the ReadyTrader-Stocks MCP server. This plugin is a thin wrapper that exposes those tools to Agent Zero. The trading engine itself is not implemented here.
-
-## Setup
-
-1. Install and run the [ReadyTrader-Stocks](https://github.com/up2itnow0822/ReadyTrader-Stocks) MCP server
-2. Drop this plugin into your Agent Zero plugins directory
-3. Configure the MCP server URL in Settings → Agent → ReadyTrader Stocks
-
-Defaults to paper trading. Switch to live when ready.
+```python
+# Add to Agent Zero plugins directory and configure your broker credentials
+```
 
 ## Configuration
 
-| Setting | Default | Description |
-|---------|---------|-------------|
-| `mcp_server_url` | `http://localhost:8000` | ReadyTrader-Stocks server address |
-| `trading_mode` | `paper` | `paper` or `live` |
-| `max_position_size_usd` | `1000` | Per-trade size cap |
-| `max_portfolio_risk_pct` | `5.0` | Max portfolio risk percentage |
-| `stop_loss_pct` | `2.0` | Default stop loss percentage |
+Set the following environment variables:
+```bash
+BROKER_API_KEY=your_key
+BROKER_API_SECRET=your_secret
+```
+
+## Ecosystem
+
+- [agent-wallet-sdk](https://github.com/up2itnow0822/agent-wallet-sdk) — Non-custodial agent wallets (`npm install agentwallet-sdk`)
+- [agentpay-mcp](https://github.com/up2itnow0822/agentpay-mcp) — MCP server for agent payments
+- [webmcp-sdk](https://github.com/up2itnow0822/webmcp-sdk) — Browser-native WebMCP integration
+- [AgentNexus2](https://github.com/up2itnow0822/AgentNexus2) — TaskBridge agent marketplace
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
-MIT
+MIT — see [LICENSE](LICENSE)
