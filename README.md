@@ -1,3 +1,7 @@
+> ⚠️ **Early Development** — This A0 plugin is a minimal wrapper. The full trading engine lives in [ReadyTrader-Stocks](https://github.com/up2itnow0822/ReadyTrader-Stocks).
+
+---
+
 # ReadyTrader Stocks — Agent Zero Plugin
 
 An Agent Zero plugin that connects your agent to the [ReadyTrader-Stocks](https://github.com/up2itnow0822/ReadyTrader-Stocks) MCP server. Your agent gets stock quotes, fundamental data, sentiment, technical analysis, and backtesting through a running ReadyTrader-Stocks instance.
@@ -10,6 +14,8 @@ An Agent Zero plugin that connects your agent to the [ReadyTrader-Stocks](https:
 - **Sentiment** — news and social sentiment for individual stocks
 - **Backtest** — test trading strategies against historical data
 - **Regime detection** — is the stock trending, ranging, or volatile?
+
+> **Note:** The capabilities above are provided by the ReadyTrader-Stocks MCP server. This plugin is a thin wrapper that exposes those tools to Agent Zero. The trading engine itself is not implemented here.
 
 ## Setup
 
