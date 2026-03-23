@@ -4,7 +4,6 @@ Wraps the ReadyTrader-Stocks MCP server to give agents access to
 stock market data, fundamental analysis, technical analysis, and trading.
 """
 import json
-from typing import Optional
 
 import httpx
 
