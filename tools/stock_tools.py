@@ -19,7 +19,7 @@ def _cfg(agent) -> dict:
         "default_timeframe": "1d",
         "max_position_size_usd": 1000.0,
     }
-    cfg = get_plugin_config("readytrader-stocks", agent=agent) or {}
+    cfg = get_plugin_config("readytrader_stocks", agent=agent) or {}
     for k, v in defaults.items():
         cfg.setdefault(k, v)
     return cfg
