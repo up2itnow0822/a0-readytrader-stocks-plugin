@@ -1,4 +1,13 @@
-.pytest_cache/
 __pycache__/
 *.pyc
+.pytest_cache/
+*.egg-info/
 .coverage
+# Created by install() inside the installed plugin folder; never part of the repository
+server/
+server.moved-*/
+server.failed-*/
+.readytrader-setup.lock
+data/
+# Saved plugin settings (Agent Zero writes usr/plugins/<name>/config.json)
+config.json

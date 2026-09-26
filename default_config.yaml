@@ -1,28 +1,16 @@
-# ReadyTrader Stocks — Default Configuration
+# ReadyTrader Stocks (Agent Zero plugin) - defaults for the settings hooks.py applies on install, on every
+# update, and whenever the plugin's settings screen is saved (saving applies them at once).
 
-# MCP server connection
-mcp_server_url: "http://localhost:8000"
+# Where the ReadyTrader-Stocks MCP server comes from: an https Git URL (or an absolute path to a clone
+# you manage) and the branch, tag or full commit SHA to check out. The setup clones it into <plugin>/server and
+# installs its requirements into <plugin>/server/.venv with Agent Zero's own Python (3.12+).
+server_repo: "https://github.com/up2itnow0822/ReadyTrader-Stocks.git"
+server_ref: "main"
 
-# Timeout for MCP HTTP calls (seconds)
-mcp_request_timeout: 30
+# The MCP entry is always named readytrader_stocks (the agent sees readytrader_stocks.get_stock_price and so on):
+# the skill calls the tools by that name, so it is not a setting.
 
-# Trading mode: paper (simulated) or live
-trading_mode: "paper"
-
-# Default market
-default_market: "US"
-
-# Paper trading starting balance (USD)
-paper_starting_balance: 10000.0
-
-# Risk limits
-max_position_size_usd: 1000.0
-max_portfolio_risk_pct: 5.0
-stop_loss_pct: 2.0
-
-# Default timeframe for chart data
-default_timeframe: "1d"
-
-# Brokerage API keys (set via environment variables)
-brokerage_api_key_env: "ALPACA_API_KEY"
-brokerage_api_secret_env: "ALPACA_API_SECRET"
+# Seconds Agent Zero waits for the server to list its tools, and for one tool call.
+# Agent Zero starts the server afresh for each operation, so allow for its start-up time.
+init_timeout: 60
+tool_timeout: 120
