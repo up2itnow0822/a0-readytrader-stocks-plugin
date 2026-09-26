@@ -1,79 +1,83 @@
 <html>
 <head>
-  <title>ReadyTrader Stocks Settings</title>
-  <script type="module">
-    import { store } from "/components/plugins/plugin-settings-store.js";
-  </script>
-  <style>
-    .rt-heading        { margin-bottom: 12px; color: #e2e8f0; }
-    .rt-heading--spaced{ margin: 20px 0 12px; color: #e2e8f0; }
-    .rt-field          { margin-bottom: 16px; }
-    .rt-label          { display: block; margin-bottom: 4px; color: #94a3b8; font-size: 13px; }
-    .rt-input          { width: 100%; padding: 8px 12px; background: #1e293b; border: 1px solid #334155; border-radius: 6px; color: #e2e8f0; }
-    .rt-hint           { font-size: 11px; color: #64748b; }
-  </style>
+    <title>ReadyTrader Stocks (paper)</title>
 </head>
+
 <body>
-  <div x-data>
-    <template x-if="$store.pluginSettings">
-      <div>
-        <h3 class="rt-heading">📈 ReadyTrader Stocks</h3>
+    <div x-data>
+        <template x-if="config">
+            <div>
+                <div class="section-title">ReadyTrader Stocks (paper)</div>
+                <div class="section-description">
+                    The plugin installs the ReadyTrader-Stocks MCP server into its own folder and registers it under
+                    MCP/A2A &rarr; External MCP Servers as <code>readytrader_stocks</code>. The server always runs the
+                    paper profile: paper mode, trading halted, live execution disabled, no broker keys. Saving applies
+                    the settings at once: the server is moved to the chosen version, checked, and registered again (a
+                    version change can take a few minutes). If that fails, nothing is saved and the current setup stays
+                    as it was. Saving again without changes repairs the setup.
+                </div>
 
-        <div class="rt-field">
-          <label class="rt-label">MCP Server URL</label>
-          <input type="text" class="rt-input"
-                 x-model="$store.pluginSettings.settings.mcp_server_url"
-                 placeholder="http://localhost:8000" />
-        </div>
+                <div class="field">
+                    <div class="field-label">
+                        <div class="field-title">Server repository</div>
+                        <div class="field-description">
+                            An https Git URL, or the absolute path of a ReadyTrader-Stocks clone you manage.
+                            Install runs this repository's code; use ReadyTrader-Stocks or a fork you trust.
+                        </div>
+                    </div>
+                    <div class="field-control">
+                        <input type="text"
+                            x-init="if (!config.server_repo) config.server_repo = 'https://github.com/up2itnow0822/ReadyTrader-Stocks.git'"
+                            x-model="config.server_repo" />
+                    </div>
+                </div>
 
-        <div class="rt-field">
-          <label class="rt-label">MCP Request Timeout (seconds)</label>
-          <input type="number" class="rt-input"
-                 x-model.number="$store.pluginSettings.settings.mcp_request_timeout"
-                 min="1" max="300" step="1" />
-        </div>
+                <div class="field">
+                    <div class="field-label">
+                        <div class="field-title">Server version</div>
+                        <div class="field-description">
+                            Branch, tag or full commit SHA of ReadyTrader-Stocks with PR #4 (September 2026) or
+                            later. Before registering it, the plugin checks that it starts, offers the skill's tools and
+                            runs in paper mode.
+                        </div>
+                    </div>
+                    <div class="field-control">
+                        <input type="text"
+                            x-init="if (!config.server_ref) config.server_ref = 'main'"
+                            x-model="config.server_ref" />
+                    </div>
+                </div>
 
-        <div class="rt-field">
-          <label class="rt-label">Trading Mode</label>
-          <select class="rt-input" x-model="$store.pluginSettings.settings.trading_mode">
-            <option value="paper">Paper (Simulated)</option>
-            <option value="live">Live</option>
-          </select>
-        </div>
+                <div class="field">
+                    <div class="field-label">
+                        <div class="field-title">Start-up timeout (seconds)</div>
+                        <div class="field-description">
+                            How long Agent Zero waits for the server to list its tools.
+                        </div>
+                    </div>
+                    <div class="field-control">
+                        <input type="number" min="5" max="3600" step="5"
+                            x-init="if (config.init_timeout === undefined || config.init_timeout === null) config.init_timeout = 60"
+                            x-model.number="config.init_timeout" />
+                    </div>
+                </div>
 
-        <h3 class="rt-heading--spaced">⚠️ Risk Limits</h3>
-
-        <div class="rt-field">
-          <label class="rt-label">Max Position Size (USD)</label>
-          <input type="number" class="rt-input"
-                 x-model.number="$store.pluginSettings.settings.max_position_size_usd"
-                 min="0" step="100" />
-        </div>
-
-        <div class="rt-field">
-          <label class="rt-label">Max Portfolio Risk (%)</label>
-          <input type="number" class="rt-input"
-                 x-model.number="$store.pluginSettings.settings.max_portfolio_risk_pct"
-                 min="0" max="100" step="0.5" />
-        </div>
-
-        <div class="rt-field">
-          <label class="rt-label">Stop Loss (%)</label>
-          <input type="number" class="rt-input"
-                 x-model.number="$store.pluginSettings.settings.stop_loss_pct"
-                 min="0" max="50" step="0.5" />
-        </div>
-
-        <h3 class="rt-heading--spaced">🔑 Brokerage API</h3>
-        <div class="rt-field">
-          <label class="rt-label">API Key Env Var</label>
-          <input type="text" class="rt-input"
-                 x-model="$store.pluginSettings.settings.brokerage_api_key_env"
-                 placeholder="ALPACA_API_KEY" />
-          <span class="rt-hint">Name of the env var holding your brokerage API key.</span>
-        </div>
-      </div>
-    </template>
-  </div>
+                <div class="field">
+                    <div class="field-label">
+                        <div class="field-title">Tool call timeout (seconds)</div>
+                        <div class="field-description">
+                            How long Agent Zero waits for one tool call (the server starts afresh for each call).
+                        </div>
+                    </div>
+                    <div class="field-control">
+                        <input type="number" min="5" max="3600" step="5"
+                            x-init="if (config.tool_timeout === undefined || config.tool_timeout === null) config.tool_timeout = 120"
+                            x-model.number="config.tool_timeout" />
+                    </div>
+                </div>
+            </div>
+        </template>
+    </div>
 </body>
+
 </html>
