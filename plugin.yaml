@@ -1,10 +1,9 @@
 name: readytrader_stocks
-title: ReadyTrader Stocks
-description: Connect your agent to stock markets through the ReadyTrader-Stocks MCP server. Get quotes, fundamental data, technical analysis, and execute paper or live trades via Alpaca.
-version: 1.0.0
+title: ReadyTrader Stocks (paper)
+description: Paper stock trading for Agent Zero through the ReadyTrader-Stocks MCP server. Installing the plugin installs the server into the plugin folder, registers it as an MCP server and adds a paper-trading skill. It never enables live trading and uses no broker keys.
+version: 2.0.0
 settings_sections:
-  - agent
   - external
 per_project_config: false
-per_agent_config: true
+per_agent_config: false
 always_enabled: false
